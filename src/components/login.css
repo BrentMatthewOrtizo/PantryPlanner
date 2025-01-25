@@ -1,0 +1,58 @@
+/* Center the login-container absolutely on the page */
+.login-container {
+    background-color: #fff; /* White card background for login */
+    padding: 2rem;
+    border: 1px solid #228b22;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  
+    /* Centering styles */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .login-title {
+    font-size: 1.5rem;
+    color: #228b22;
+    margin-bottom: 1rem;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .login-input {
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .login-buttons {
+    margin-top: 1rem;
+  }
+  
+  .btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .btn-signin {
+    background-color: #228b22;
+    color: #fff;
+    margin-right: 0.5rem;
+  }
+  
+  .btn-signout {
+    background-color: #f08080;
+    color: #fff;
+  }
