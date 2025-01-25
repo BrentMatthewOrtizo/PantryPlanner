@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CuisineCard from "../components/CuisineCard";
 import "../components/cuisine.css";
 
@@ -13,13 +14,19 @@ const cuisines = [
   { name: "Other", imageSrc: "/images/other.jpg" },
 ];
 
-function CuisineSelection({ onContinue }) {
+function CuisineSelection() {
   const [selectedCuisines, setSelectedCuisines] = useState([]);
+  const navigate = useNavigate();
 
   const handleSelect = (name) => {
     setSelectedCuisines((prev) =>
       prev.includes(name) ? prev.filter((cuisine) => cuisine !== name) : [...prev, name]
     );
+  };
+
+  const handleContinue = () => {
+    console.log("Selected Cuisines:", selectedCuisines);
+    navigate("/cooking-goals");
   };
 
   return (
@@ -37,10 +44,7 @@ function CuisineSelection({ onContinue }) {
         ))}
       </div>
       {selectedCuisines.length > 0 && (
-        <button
-          className="continue-button"
-          onClick={onContinue}
-        >
+        <button className="continue-button" onClick={handleContinue}>
           Continue
         </button>
       )}

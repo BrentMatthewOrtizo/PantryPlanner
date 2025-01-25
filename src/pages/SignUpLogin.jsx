@@ -52,7 +52,7 @@ const SignUpLogin = () => {
 
     try {
       await signInWithEmailAndPassword(auth, formData.email, formData.password);
-      navigate("/next"); // Keep the login route unchanged
+      navigate("/hub"); // Updated route
     } catch (firebaseError) {
       // Handle Firebase Authentication errors
       if (

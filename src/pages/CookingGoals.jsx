@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import GoalCard from "../components/GoalCard";
 import "../components/goal.css";
 
@@ -6,22 +7,23 @@ const goals = [
   {
     goal: "Learn to cook generally",
     description: "Master the basics and beyond in various cuisines.",
-    imageSrc: "/images/general_cooking.jpg", // Add the corresponding image path
+    imageSrc: "/images/general_cooking.jpg",
   },
   {
     goal: "Learn to cook on a budget",
     description: "Create delicious meals while saving money.",
-    imageSrc: "/images/budget_cooking.jpg", // Add the corresponding image path
+    imageSrc: "/images/budget_cooking.jpg",
   },
   {
     goal: "Learn to cook for health",
     description: "Focus on nutritious and balanced recipes.",
-    imageSrc: "/images/healthy_cooking.jpg", // Add the corresponding image path
+    imageSrc: "/images/healthy_cooking.jpg",
   },
 ];
 
 function CookingGoals() {
   const [selectedGoals, setSelectedGoals] = useState([]);
+  const navigate = useNavigate();
 
   const handleSelect = (goal) => {
     setSelectedGoals((prev) =>
@@ -31,7 +33,7 @@ function CookingGoals() {
 
   const handleContinue = () => {
     console.log("Selected Goals:", selectedGoals);
-    alert("Goals saved!");
+    navigate("/hub");
   };
 
   return (
