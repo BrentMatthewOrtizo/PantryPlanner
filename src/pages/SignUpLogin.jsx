@@ -37,7 +37,7 @@ const SignUpLogin = () => {
 
     try {
       await createUserWithEmailAndPassword(auth, formData.email, formData.password);
-      navigate("/next");
+      navigate("/cuisine-selection"); // Redirect to Cuisine Selection page
     } catch (firebaseError) {
       setError(firebaseError.message);
     }
@@ -49,10 +49,10 @@ const SignUpLogin = () => {
       setError("Email and Password are required.");
       return;
     }
-  
+
     try {
       await signInWithEmailAndPassword(auth, formData.email, formData.password);
-      navigate("/next");
+      navigate("/next"); // Keep the login route unchanged
     } catch (firebaseError) {
       // Handle Firebase Authentication errors
       if (
@@ -60,7 +60,7 @@ const SignUpLogin = () => {
         firebaseError.code === "auth/wrong-password" ||
         firebaseError.code === "auth/invalid-credential"
       ) {
-        setError("Invalid email or password."); // General error for invalid credentials
+        setError("Invalid email or password.");
       } else if (firebaseError.code === "auth/too-many-requests") {
         setError("Too many login attempts. Please try again later.");
       } else {
