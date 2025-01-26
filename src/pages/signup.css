@@ -1,15 +1,14 @@
-/* Full-page container */
+
 .signup-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: #f5deb3; /* Cream khaki brown */
+    background-color: #f5deb3; 
     font-family: Arial, sans-serif;
   }
   
-  /* Header */
   .signup-header {
     position: absolute;
     top: 20px;
@@ -17,18 +16,18 @@
   }
   
   .signup-title {
-    font-size: 2rem;
-    color: #228b22; /* Vegetable green */
+    font-size: 5rem;
+    color: #228b22; 
     font-weight: bold;
   }
   
-  /* Form styles */
+  
   .signup-form {
     display: flex;
     flex-direction: column;
     width: 300px;
     gap: 1rem;
-    background-color: #fff; /* White form background */
+    background-color: #fff; 
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -50,7 +49,7 @@
   }
   
   .signup-button {
-    background-color: #228b22; /* Vegetable green */
+    background-color: #228b22; 
     color: #fff;
     font-size: 1rem;
     padding: 0.8rem;
@@ -61,7 +60,7 @@
   }
   
   .signup-button:hover {
-    background-color: #1a6d1a; /* Darker green on hover */
+    background-color: #1a6d1a; 
   }
   
   .signup-button:disabled {
@@ -69,9 +68,9 @@
     cursor: not-allowed;
   }
   
-  /* Toggle link */
+
   .toggle-link {
-    color: #228b22; /* Vegetable green */
+    color: #228b22; 
     cursor: pointer;
     text-decoration: underline;
     font-weight: bold;

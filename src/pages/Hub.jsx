@@ -29,12 +29,12 @@ const Hub = () => {
   };
 
   const handleFindRecipes = async () => {
-    console.log("Searching recipes for:", ingredients); // Debugging log
+    console.log("Searching recipes for:", ingredients);
     setLoading(true);
     setError("");
     try {
       const recipes = await getRecipesByIngredients(ingredients);
-      console.log("Fetched recipes:", recipes); // Debugging log
+      console.log("Fetched recipes:", recipes);
       navigate("/recipes", { state: { recipes } });
     } catch (err) {
       console.error("Error fetching recipes:", err);
@@ -45,8 +45,8 @@ const Hub = () => {
   };
 
   const handleLogout = () => {
-    localStorage.clear(); // Clear local storage (optional)
-    navigate("/"); // Redirect to Home.jsx
+    localStorage.clear();
+    navigate("/");
   };
 
   return (
@@ -56,7 +56,7 @@ const Hub = () => {
         Logout
       </button>
 
-      <h1 className="hub-title">Welcome to Your Pantry</h1>
+      <h1 className="hub-title">Welcome to Pantry Planner</h1>
       <div className="hub-content">
         <div className="pantry-section">
           <h2>Your Pantry</h2>
@@ -87,7 +87,7 @@ const Hub = () => {
               placeholder="Add an ingredient"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              onKeyDown={handleKeyDown} // Add this event handler
+              onKeyDown={handleKeyDown}
               className="ingredient-input"
             />
             <button

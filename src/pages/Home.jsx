@@ -12,10 +12,8 @@ const Home = () => {
   return (
     <div className="home-container">
       <header className="home-header">
-        <h1 className="home-title">Panther Pantry</h1>
-        <p className="home-subtitle">
-          Empowering students with resources to thrive on campus.
-        </p>
+        <h1 className="home-title">Pantry Planner</h1>
+        <p className="home-subtitle">Turn your pantry into possibilities</p>
         <button className="get-started-button" onClick={handleGetStarted}>
           Get Started
         </button>

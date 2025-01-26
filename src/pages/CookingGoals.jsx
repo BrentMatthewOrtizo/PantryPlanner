@@ -1,54 +1,62 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import GoalCard from "../components/GoalCard";
-import "../components/goal.css";
+import "./CookingGoals.css";
+import generalCooking from "../assets/general_cooking.jpg";
+import budgetCooking from "../assets/budget_cooking.jpg";
+import healthyCooking from "../assets/healthy_cooking.jpg";
 
-const goals = [
-  {
-    goal: "Learn to cook generally",
-    description: "Master the basics and beyond in various cuisines.",
-    imageSrc: "/images/general_cooking.jpg",
-  },
-  {
-    goal: "Learn to cook on a budget",
-    description: "Create delicious meals while saving money.",
-    imageSrc: "/images/budget_cooking.jpg",
-  },
-  {
-    goal: "Learn to cook for health",
-    description: "Focus on nutritious and balanced recipes.",
-    imageSrc: "/images/healthy_cooking.jpg",
-  },
-];
-
-function CookingGoals() {
-  const [selectedGoals, setSelectedGoals] = useState([]);
+const CookingGoals = () => {
   const navigate = useNavigate();
+  const [selectedGoals, setSelectedGoals] = useState([]);
 
-  const handleSelect = (goal) => {
+  const goals = [
+    {
+      id: 1,
+      title: "Learn to Cook Generally",
+      description: "Master the Basics and Beyond in Various Cuisines",
+      image: generalCooking,
+    },
+    {
+      id: 2,
+      title: "Learn to Cook on a Budget",
+      description: "Create Delicious Meals While Saving Money",
+      image: budgetCooking,
+    },
+    {
+      id: 3,
+      title: "Learn to Cook for Health",
+      description: "Focus on Nutritious and Balanced Recipes",
+      image: healthyCooking,
+    },
+  ];
+
+  const handleGoalClick = (goalId) => {
     setSelectedGoals((prev) =>
-      prev.includes(goal) ? prev.filter((g) => g !== goal) : [...prev, goal]
+      prev.includes(goalId) ? prev.filter((id) => id !== goalId) : [...prev, goalId]
     );
   };
 
   const handleContinue = () => {
-    console.log("Selected Goals:", selectedGoals);
+    console.log("Selected Cooking Goals:", selectedGoals);
     navigate("/hub");
   };
 
   return (
     <div className="cooking-goals-container">
-      <h1 className="goals-title">What are your cooking goals?</h1>
-      <div className="goals-container">
-        {goals.map((goalItem) => (
-          <GoalCard
-            key={goalItem.goal}
-            goal={goalItem.goal}
-            description={goalItem.description}
-            imageSrc={goalItem.imageSrc}
-            onSelect={handleSelect}
-            isSelected={selectedGoals.includes(goalItem.goal)}
-          />
+      <h2 className="goals-header">What are your cooking goals?</h2>
+      <div className="cooking-goals-grid">
+        {goals.map((goal) => (
+          <div
+            key={goal.id}
+            className={`goal-item ${selectedGoals.includes(goal.id) ? "selected" : ""}`}
+            onClick={() => handleGoalClick(goal.id)}
+          >
+            <img src={goal.image} alt={goal.title} className="goal-image" />
+            <div className="goal-text">
+              <h3>{goal.title}</h3>
+              <p>{goal.description}</p>
+            </div>
+          </div>
         ))}
       </div>
       {selectedGoals.length > 0 && (
@@ -58,6 +66,6 @@ function CookingGoals() {
       )}
     </div>
   );
-}
+};
 
 export default CookingGoals;

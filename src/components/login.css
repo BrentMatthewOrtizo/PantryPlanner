@@ -1,6 +1,6 @@
-/* Center the login-container absolutely on the page */
+
 .login-container {
-    background-color: #fff; /* White card background for login */
+    background-color: #fff;
     padding: 2rem;
     border: 1px solid #228b22;
     border-radius: 10px;

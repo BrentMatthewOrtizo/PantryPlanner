@@ -5,7 +5,7 @@ import { auth } from "../firebaseconfig/firebase";
 import "./signup.css";
 
 const SignUpLogin = () => {
-  const [isSignUp, setIsSignUp] = useState(true); // Toggle between Sign Up and Log In
+  const [isSignUp, setIsSignUp] = useState(true); 
   const [formData, setFormData] = useState({
     email: "",
     confirmEmail: "",
@@ -22,12 +22,11 @@ const SignUpLogin = () => {
 
   const isPasswordValid = (password) => {
     const minLength = 12;
-    const regex = /(?=.*[0-9!@#$%^&*])/; // Must contain at least one number or special character
+    const regex = /(?=.*[0-9!@#$%^&*])/; 
     return password.length >= minLength && regex.test(password);
   };
 
   const handleSignUp = async () => {
-    // Validate fields for Sign Up
     if (!formData.email || !formData.confirmEmail || !formData.password || !formData.confirmPassword) {
       setError("All fields must be filled.");
       return;
@@ -56,7 +55,6 @@ const SignUpLogin = () => {
   };
 
   const handleLogIn = async () => {
-    // Validate fields for Log In
     if (!formData.email || !formData.password) {
       setError("Email and Password are required.");
       return;
@@ -64,7 +62,7 @@ const SignUpLogin = () => {
 
     try {
       await signInWithEmailAndPassword(auth, formData.email, formData.password);
-      navigate("/hub"); // Redirect to the hub page
+      navigate("/hub");
     } catch (firebaseError) {
       if (
         firebaseError.code === "auth/user-not-found" ||
@@ -83,7 +81,7 @@ const SignUpLogin = () => {
   return (
     <div className="signup-container">
       <header className="signup-header">
-        <h1 className="signup-title">Panther Pantry</h1>
+        <h1 className="signup-title"></h1>
       </header>
       <form className="signup-form" onSubmit={(e) => e.preventDefault()}>
         <h2>{isSignUp ? "Sign Up" : "Log In"}</h2>
@@ -95,7 +93,7 @@ const SignUpLogin = () => {
             className="toggle-link"
             onClick={() => {
               setIsSignUp(!isSignUp);
-              setError(""); // Clear error when switching views
+              setError("");
             }}
           >
             {isSignUp ? "Log In" : "Sign Up"}

@@ -1,28 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./recipe.css";
-import "./chat.css"; // For the chatbox layout
+import "./chat.css"; 
 import { sendMessageToGroq } from "../services/groq";
 
 const RecipeView = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const recipes = location.state?.recipes || []; // Get recipes from state
+  const recipes = location.state?.recipes || []; 
 
-  const [selectedRecipe, setSelectedRecipe] = useState(null); // State for popup
-  const [recipeDetails, setRecipeDetails] = useState(null); // Recipe details
+  const [selectedRecipe, setSelectedRecipe] = useState(null); 
+  const [recipeDetails, setRecipeDetails] = useState(null); 
   const [loadingDetails, setLoadingDetails] = useState(false);
 
-  const [currentPage, setCurrentPage] = useState(1); // Pagination state
+  const [currentPage, setCurrentPage] = useState(1); 
   const recipesPerPage = 5;
   const totalPages = Math.ceil(recipes.length / recipesPerPage);
 
-  // Chatbox states
+  
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [chatInput, setChatInput] = useState("");
   const [chatMessages, setChatMessages] = useState([]);
   const [loadingGroq, setLoadingGroq] = useState(false);
+
+  
+  const [showTextBubble, setShowTextBubble] = useState(true);
+
+  
+  useEffect(() => {
+    const timer = setTimeout(() => setShowTextBubble(false), 3000);
+    return () => clearTimeout(timer); 
+  }, []);
 
   const fetchRecipeDetails = async (id) => {
     setLoadingDetails(true);
@@ -40,12 +49,12 @@ const RecipeView = () => {
 
   const handleViewRecipe = async (recipe) => {
     setSelectedRecipe(recipe);
-    await fetchRecipeDetails(recipe.id); // Fetch details when View Recipe is clicked
+    await fetchRecipeDetails(recipe.id); 
   };
 
   const handleClosePopup = () => {
     setSelectedRecipe(null);
-    setRecipeDetails(null); // Reset details
+    setRecipeDetails(null); 
   };
 
   const handlePageChange = (direction) => {
@@ -57,7 +66,7 @@ const RecipeView = () => {
   };
 
   const toggleChatbox = () => {
-    setIsChatOpen(!isChatOpen); // Toggle chatbox open/close
+    setIsChatOpen(!isChatOpen);
   };
 
   const handleChatSubmit = async () => {
@@ -75,11 +84,10 @@ const RecipeView = () => {
       console.error("Failed to fetch Groq response:", error);
     } finally {
       setLoadingGroq(false);
-      setChatInput(""); // Reset chat input
+      setChatInput(""); 
     }
   };
 
-  // Calculate recipes for the current page
   const indexOfLastRecipe = currentPage * recipesPerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
   const currentRecipes = recipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
@@ -186,6 +194,7 @@ const RecipeView = () => {
       <button className="chat-button" onClick={toggleChatbox}>
         Ask Groq
       </button>
+      {showTextBubble && <div className="text-bubble">Ask Groq for cooking advice!</div>}
       {isChatOpen && (
         <div className="chatbox">
           <div className="chat-header">

@@ -11,7 +11,7 @@ function GoalCard({ goal, description, imageSrc, onSelect, isSelected }) {
         border: isSelected ? "2px solid #28a745" : "1px solid #ccc",
         cursor: "pointer",
         borderRadius: "10px",
-        backgroundImage: `url(${imageSrc})`, // Set the background image
+        backgroundImage: `url(${imageSrc})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         display: "flex",

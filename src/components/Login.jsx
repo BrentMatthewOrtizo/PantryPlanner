@@ -11,7 +11,7 @@ const Login = () => {
   const handleSignIn = async () => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      setUser(userCredential.user); // Set the signed-in user
+      setUser(userCredential.user); 
       console.log("Signed in:", userCredential.user);
     } catch (error) {
       console.error("Error signing in:", error.message);
@@ -22,7 +22,7 @@ const Login = () => {
   const handleSignOut = async () => {
     try {
       await signOut(auth);
-      setUser(null); // Clear the signed-in user
+      setUser(null); 
       console.log("Signed out");
     } catch (error) {
       console.error("Error signing out:", error.message);

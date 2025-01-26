@@ -1,13 +1,13 @@
-/* General layout */
+
 .hub-container {
   text-align: center;
   padding: 2rem;
-  background-color: #fdf6e4; /* Light beige */
+  background-color: #fdf6e4; 
 }
 
 .hub-title {
   font-size: 2rem;
-  color: #a0522d; /* Dark brown */
+  color: #a0522d; 
   margin-bottom: 2rem;
 }
 
@@ -18,10 +18,10 @@
   gap: 2rem;
 }
 
-/* Pantry section */
+
 .pantry-section {
   flex: 3;
-  background-color: #a0522d; /* Darker brown */
+  background-color: #a0522d; 
   color: white;
   border-radius: 10px;
   padding: 1rem;
@@ -40,15 +40,15 @@
   justify-content: flex-start;
   gap: 0.5rem;
   padding: 1rem;
-  background-color: #8b4513; /* Dark brown shelf */
+  background-color: #8b4513; 
   border-radius: 5px;
-  min-height: 80px; /* Ensures all shelves have the same height */
-  align-items: center; /* Vertically centers the items */
+  min-height: 80px; 
+  align-items: center; 
   transition: background-color 0.3s ease;
 }
 
 .shelf:hover {
-  background-color: #a0522d; /* Lighter brown on hover */
+  background-color: #a0522d; 
 }
 
 .pantry-item {
@@ -61,10 +61,10 @@
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 100px; /* Ensures uniform width for pantry items */
-  height: 50px; /* Adds consistency to the height of pantry items */
+  width: 100px; 
+  height: 50px; 
   text-align: center;
-  overflow: hidden; /* Prevents overflowing content */
+  overflow: hidden; 
 }
 
 .pantry-item button {
@@ -76,7 +76,7 @@
   margin-left: 5px;
 }
 
-/* Add ingredient bar */
+
 .add-ingredient-bar {
   display: flex;
   justify-content: space-between;
@@ -105,7 +105,7 @@
 }
 
 .add-button:hover {
-  background-color: #ff8c00; /* Darker orange */
+  background-color: #ff8c00; 
 }
 
 .add-button:disabled {
@@ -113,7 +113,6 @@
   cursor: not-allowed;
 }
 
-/* Features section */
 .features-section {
   flex: 1;
   display: flex;
@@ -160,7 +159,6 @@
   background-color: #0056b3;
 }
 
-/* Recipe results */
 .recipe-results {
   margin-top: 2rem;
   text-align: center;
@@ -204,7 +202,7 @@
   position: absolute;
   top: 55px;
   right: 60px;
-  background-color: #e63946; /* Red color */
+  background-color: #e63946; 
   color: #ffffff;
   border: none;
   padding: 10px 20px;
@@ -215,7 +213,7 @@
 }
 
 .logout-button:hover {
-  background-color: #d62828; /* Darker red on hover */
+  background-color: #d62828; 
 }
 
 .logout-button:focus {
