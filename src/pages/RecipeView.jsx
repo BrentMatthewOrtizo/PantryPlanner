@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./recipe.css";
+import "./chat.css"; // For the chatbox layout
+import { sendMessageToGroq } from "../services/groq";
 
 const RecipeView = () => {
   const location = useLocation();
@@ -15,6 +17,12 @@ const RecipeView = () => {
   const [currentPage, setCurrentPage] = useState(1); // Pagination state
   const recipesPerPage = 5;
   const totalPages = Math.ceil(recipes.length / recipesPerPage);
+
+  // Chatbox states
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [chatInput, setChatInput] = useState("");
+  const [chatMessages, setChatMessages] = useState([]);
+  const [loadingGroq, setLoadingGroq] = useState(false);
 
   const fetchRecipeDetails = async (id) => {
     setLoadingDetails(true);
@@ -45,6 +53,29 @@ const RecipeView = () => {
       setCurrentPage(currentPage + 1);
     } else if (direction === "prev" && currentPage > 1) {
       setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const toggleChatbox = () => {
+    setIsChatOpen(!isChatOpen); // Toggle chatbox open/close
+  };
+
+  const handleChatSubmit = async () => {
+    if (!chatInput.trim()) return;
+
+    const userMessage = { role: "user", content: chatInput };
+    setChatMessages((prev) => [...prev, userMessage]);
+
+    setLoadingGroq(true);
+    try {
+      const groqResponse = await sendMessageToGroq([...chatMessages, userMessage]);
+      const assistantMessage = { role: "assistant", content: groqResponse };
+      setChatMessages((prev) => [...prev, assistantMessage]);
+    } catch (error) {
+      console.error("Failed to fetch Groq response:", error);
+    } finally {
+      setLoadingGroq(false);
+      setChatInput(""); // Reset chat input
     }
   };
 
@@ -147,6 +178,41 @@ const RecipeView = () => {
             ) : (
               <p>Failed to load recipe details. Please try again later.</p>
             )}
+          </div>
+        </div>
+      )}
+
+      {/* Chatbox */}
+      <button className="chat-button" onClick={toggleChatbox}>
+        Ask Groq
+      </button>
+      {isChatOpen && (
+        <div className="chatbox">
+          <div className="chat-header">
+            <h3>Chat with Groq for advice!</h3>
+            <button onClick={toggleChatbox} aria-label="Close Chat">
+              &times;
+            </button>
+          </div>
+          <div className="chat-body">
+            {chatMessages.map((msg, index) => (
+              <div
+                key={index}
+                className={`chat-message ${msg.role === "user" ? "user" : "assistant"}`}
+              >
+                {msg.content}
+              </div>
+            ))}
+            {loadingGroq && <div className="chat-message assistant">Loading...</div>}
+          </div>
+          <div className="chat-footer">
+            <input
+              type="text"
+              value={chatInput}
+              onChange={(e) => setChatInput(e.target.value)}
+              placeholder="Ask something..."
+            />
+            <button onClick={handleChatSubmit}>Send</button>
           </div>
         </div>
       )}
