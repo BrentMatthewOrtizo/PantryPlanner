@@ -44,8 +44,18 @@ const Hub = () => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.clear(); // Clear local storage (optional)
+    navigate("/"); // Redirect to Home.jsx
+  };
+
   return (
     <div className="hub-container">
+      {/* Logout Button */}
+      <button className="logout-button" onClick={handleLogout}>
+        Logout
+      </button>
+
       <h1 className="hub-title">Welcome to Your Pantry</h1>
       <div className="hub-content">
         <div className="pantry-section">

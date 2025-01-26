@@ -20,6 +20,12 @@ const SignUpLogin = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const isPasswordValid = (password) => {
+    const minLength = 12;
+    const regex = /(?=.*[0-9!@#$%^&*])/; // Must contain at least one number or special character
+    return password.length >= minLength && regex.test(password);
+  };
+
   const handleSignUp = async () => {
     // Validate fields for Sign Up
     if (!formData.email || !formData.confirmEmail || !formData.password || !formData.confirmPassword) {
@@ -32,6 +38,12 @@ const SignUpLogin = () => {
     }
     if (formData.password !== formData.confirmPassword) {
       setError("Passwords do not match.");
+      return;
+    }
+    if (!isPasswordValid(formData.password)) {
+      setError(
+        "Password must be at least 12 characters long and include at least one number or special character."
+      );
       return;
     }
 
@@ -52,9 +64,8 @@ const SignUpLogin = () => {
 
     try {
       await signInWithEmailAndPassword(auth, formData.email, formData.password);
-      navigate("/hub"); // Updated route
+      navigate("/hub"); // Redirect to the hub page
     } catch (firebaseError) {
-      // Handle Firebase Authentication errors
       if (
         firebaseError.code === "auth/user-not-found" ||
         firebaseError.code === "auth/wrong-password" ||
