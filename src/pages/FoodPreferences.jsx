@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./FoodPreferences.css";
+import "./foodpreferences.css";
 
 // Imported images from the assets directory
 import asian from "../assets/asian.jpg";
