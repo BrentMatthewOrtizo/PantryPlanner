@@ -15,7 +15,7 @@
   - Contributions: UI/UX design, page styling, React components  
 - **Jodie Le**  
   - Role: Frontend Developer  
-  - Contributions: Interactive features, user-facing components, responsiveness  
+  - Contributions: UI/UX design, interactive features, user-facing components
 
 ---
 
